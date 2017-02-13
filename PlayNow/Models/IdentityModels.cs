@@ -20,6 +20,9 @@ namespace PlayNow.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<GameModel> GameModel { get; set; }
+        public DbSet<GameSessionModel> GameSessionModel { get; set; }
+        public DbSet<UserModel> UserModel { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
