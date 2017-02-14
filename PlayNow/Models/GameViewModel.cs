@@ -26,6 +26,8 @@ namespace PlayNow.Models
         [Required]
         [Display(Name = "Maximum Players")]
         public int MaximumPlayers { get; set; }
+
+        public IEnumerable<GameModel> GameModels { get; set; }
     }
 
 }

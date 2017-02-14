@@ -22,7 +22,12 @@ namespace PlayNow.Controllers
         }
         public ActionResult GameIndex()
         {
-            return View();
+            var restList = _context.GameModel;
+            var viewModel = new GameViewModel()
+            {
+                GameModels = restList
+            };
+            return View(viewModel);
         }
 
         public ActionResult NewGameResult(GameViewModel model)
