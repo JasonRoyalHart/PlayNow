@@ -1,0 +1,68 @@
+﻿@model PlayNow.Models.GameSessionViewModel
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit A Game</h2>
+
+<div>
+    <table class="table">
+        <thead>
+            <tr style="margin-bottom:20px">
+                <th class="tableTitle"></th>
+                <th class="tableTitle"></th>
+                <th class="tableTitle"></th>
+                <th class="tableTitle"></th>
+            </tr>
+            <tr style="margin-bottom:20px">
+                <td>Game</td>
+                <td>@Model.GameSessionToEdit.GameName</td>
+            </tr>
+            <tr style="margin-bottom:20px">
+                <td>Time</td>
+                <td>@Model.GameSessionToEdit.Time</td>
+                <td>@Html.TextBoxFor(m => m.Time, new { @class = "form-control" })</td>
+            </tr>
+            <tr style="margin-bottom:20px">
+                <td>Day</td>
+                <td>@Model.GameSessionToEdit.Day</td>
+                <td>@Html.TextBoxFor(m => m.Day, new { @class = "form-control" })</td>
+            </tr>
+            <tr style="margin-bottom:20px">
+                <td>Month</td>
+                <td>@Model.GameSessionToEdit.Month</td>
+                <td>@Html.TextBoxFor(m => m.Month, new { @class = "form-control" })</td>
+            </tr>
+            <tr style="margin-bottom:20px">
+                <td>Year</td>
+                <td>@Model.GameSessionToEdit.Year</td>
+                <td>@Html.TextBoxFor(m => m.Year, new { @class = "form-control" })</td>
+            </tr>
+            @for (var i = 0; i < Model.GameSessionToEdit.MaximumPlayers; i++)
+            {
+                <tr style="margin-bottom:20px">
+                    
+                    <td>Player</td>
+                    @if (i + 1 <= Model.NumberOfCurrentUsers)
+                    {
+
+                        <td>@Model.GameSessionToEdit.Users.ElementAt(i).DisplayName</td>
+                    }
+                    else
+                    {
+                        <td>None</td>
+                    }
+
+                    @if (i + 1 <= Model.NumberOfCurrentUsers && Model.CurrentUserModel.UserId != Model.GameSessionToEdit.Users.ElementAt(i).UserId)
+                    {
+                        <td><input type="button" value="Remove" onclick="location.href='@Url.Action("Remove", "MyGameSessions", new { GameSessionToRemoveFrom = Model.GameSessionToEdit.GameSessionId, UserNumberToRemove = i})'" /></td>
+                    }
+                    else
+                    {
+                        <td>Invite</td>
+                        <td>@Html.DropDownListFor(m => m.GameSession.GameSessionId, new SelectList(Model.InvitableUsers, "UserId", "DisplayName"), "Name", new { @class = "form-control" })</td>
+                    }
+                </tr>
+            }
+        </table>
+</div>

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Owin;
 using Owin;
+using PlayNow;
 
 [assembly: OwinStartupAttribute(typeof(PlayNow.Startup))]
 namespace PlayNow
@@ -9,6 +10,8 @@ namespace PlayNow
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
+            app.MapSignalR();
         }
     }
 }
+

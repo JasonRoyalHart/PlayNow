@@ -17,9 +17,11 @@ namespace PlayNow.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext _context;
 
         public AccountController()
         {
+            _context = new ApplicationDbContext();
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -147,6 +149,8 @@ namespace PlayNow.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+
+
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
@@ -156,7 +160,11 @@ namespace PlayNow.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
+                    var userModel = new UserModel { Email = model.Email, DisplayName = model.Email, Rating = 10 };
+                    _context.UserModel.Add(userModel);
+                    _context.SaveChanges();
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);

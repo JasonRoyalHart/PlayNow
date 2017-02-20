@@ -11,12 +11,17 @@
     <h4>Enter Game Session Information</h4>
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
+
+
     <div class="form-group">
-        @Html.LabelFor(m => m.Game, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Game, new { @class = "form-control" })
-        </div>
+        @Html.LabelFor(m => m.Game.Name)
+        @Html.DropDownListFor(m => m.Game.GameId, new SelectList(Model.GameModels, "GameId", "Name"), "Choose a game", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Game.GameId)
     </div>
+
+
+
+
     <div class="form-group">
         @Html.LabelFor(m => m.Time, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
@@ -53,11 +58,55 @@
             @Html.TextBoxFor(m => m.MaximumPlayers, new { @class = "form-control" })
         </div>
     </div>
-
+    <div class="form-group">
+        @Html.LabelFor(m => m.MinimumRating, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.MinimumRating, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ApprovalNeeded, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.CheckBoxFor(m => m.ApprovalNeeded, new { @class = "form-control" })
+        </div>
+    </div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" class="btn btn-default" value="Create a game session" />
         </div>
+    </div>
+
+    <div>
+        <table class="table">
+            <thead>
+                <tr style="margin-bottom:20px">
+                    <th class="tableTitle">Game</th>
+                    <th class="tableTitle">Creator</th>
+                    <th class="tableTitle">Day</th>
+                    <th class="tableTitle">Month</th>
+                    <th class="tableTitle">Year</th>
+                    <th class="tableTitle">Minimum Players</th>
+                    <th class="tableTitle">Maximum Players</th>
+                    <th class="tableTitle">Minimum Rating</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (var i = 0; i < Model.GameSessionModels.Count(); i++)
+                {
+                    <tr>
+                        <td>@Model.GameSessionModels.ElementAt(i).GameName</td>
+                        <td>@Model.GameSessionModels.ElementAt(i).Creator</td>
+                        <td>@Model.GameSessionModels.ElementAt(i).Day</td>
+                        <td>@Model.GameSessionModels.ElementAt(i).Month</td>
+                        <td>@Model.GameSessionModels.ElementAt(i).Year</td>
+                        <td>@Model.GameSessionModels.ElementAt(i).MinimumPlayers</td>
+                        <td>@Model.GameSessionModels.ElementAt(i).MaximumPlayers</td>
+                        <td>@Model.GameSessionModels.ElementAt(i).MinimumRating</td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
     </div>
 }
 

@@ -1,0 +1,96 @@
+﻿
+@model PlayNow.Models.GameSessionViewModel
+@{
+    ViewBag.Title = "MyGameSessionsIndex";
+}
+
+
+    @Html.AntiForgeryToken()
+    if (ViewBag.Message != null)
+    {
+        @ViewBag.Message
+    }
+    <h2>Game Sessions You Created</h2>
+
+    <div>
+            <table class="table">
+                <thead>
+                    <tr style="margin-bottom:20px">
+                        <th class="tableTitle">Edit</th>
+                        <th class="tableTitle">Game</th>
+                        <th class="tableTitle">Minimum Players</th>
+                        <th class="tableTitle">Maximum Players</th>
+                        <th class="tableTitle">Time</th>
+                        <th class="tableTitle">Day</th>
+                        <th class="tableTitle">Month</th>
+                        <th class="tableTitle">Year</th>
+                        <th class="tableTitle">Current Players</th>
+                        <th class="tableTitle">Players Needing Approval</th>
+                        <th class="tableTitle">Invited Players</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (var i = 0; i < Model.GameSessionModels.Count(); i++)
+                    {
+                        <tr>
+                            <td><input type="button" value="Edit" onclick="location.href='@Url.Action("Edit", "MyGameSessions", new { GameSessionToEdit = Model.GameSessionModels.ElementAt(i).GameSessionId })'" /></td>
+                            <td>@Model.GameSessionModels.ElementAt(i).GameName</td>
+                            <td>@Model.GameSessionModels.ElementAt(i).MinimumPlayers</td>
+                            <td>@Model.GameSessionModels.ElementAt(i).MaximumPlayers</td>
+                            <td>@Model.GameSessionModels.ElementAt(i).Time</td>
+                            <td>@Model.GameSessionModels.ElementAt(i).Day</td>
+                            <td>@Model.GameSessionModels.ElementAt(i).Month</td>
+                            <td>@Model.GameSessionModels.ElementAt(i).Year</td>
+                            @if (Model.GameSessionModels.ElementAt(i).Users.Count() > 0)
+                            {
+                                <td>
+                                    @for (var j = 0; j < Model.GameSessionModels.ElementAt(i).Users.Count(); j++)
+                                    {
+                                        @Model.GameSessionModels.ElementAt(i).Users.ElementAt(j).DisplayName
+                                        <br />
+                                    }
+                                </td>
+                            }
+                            else
+                            {
+                                <td></td>
+                            }
+
+                            @if (Model.GameSessionModels.ElementAt(i).UsersNeedingApproval.Count() > 0)
+                            {
+                                <td>
+                                    @for (var j = 0; j < Model.GameSessionModels.ElementAt(i).UsersNeedingApproval.Count(); j++)
+                                    {
+                                        string CurrentUser = Model.GameSessionModels.ElementAt(i).UsersNeedingApproval.ElementAt(j).DisplayName;
+                                        @Model.GameSessionModels.ElementAt(i).UsersNeedingApproval.ElementAt(j).DisplayName
+                                        <input type="button" value="Approve" onclick="location.href='@Url.Action("Approve", "MyGameSessions", new { ApprovedGameSession = Model.GameSessionModels.ElementAt(i).GameSessionId, ApprovedId = Model.GameSessionModels.ElementAt(i).UsersNeedingApproval.ElementAt(j).UserId })'" />
+                                        <input type="button" value="Deny" onclick="location.href='@Url.Action("Deny", "MyGameSessions", new { DeniedGameSession = Model.GameSessionModels.ElementAt(i).GameSessionId, DeniedId = Model.GameSessionModels.ElementAt(i).UsersNeedingApproval.ElementAt(j).UserId })'" />
+                                    }
+                                </td>
+                            }
+                            else
+                            {
+                                <td></td>
+                            }
+                            @if (Model.GameSessionModels.ElementAt(i).InvitedUsers.Count() > 0)
+                            {
+                                <td>
+                                    @for (var j = 0; j < Model.GameSessionModels.ElementAt(i).InvitedUsers.Count(); j++)
+                                    {
+                                        @Model.GameSessionModels.ElementAt(i).InvitedUsers.ElementAt(j).DisplayName
+                                        <br />
+                                    }
+                                </td>
+                            }
+                            else
+                            {
+                                <td></td>
+                            }                           
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+
+    </div>
+

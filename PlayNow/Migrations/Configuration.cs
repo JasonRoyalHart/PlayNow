@@ -10,7 +10,6 @@ namespace PlayNow.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "PlayNow.Models.ApplicationDbContext";
         }
 
         protected override void Seed(PlayNow.Models.ApplicationDbContext context)

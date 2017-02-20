@@ -1,0 +1,66 @@
+﻿@model PlayNow.Models.UserViewModel
+@{
+    ViewBag.Title = "UserIndex";
+}
+
+<h2>Update your information</h2>
+
+@using (Html.BeginForm("UpdateUserResult", "User", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+        <h4>Enter New Information</h4>
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+<div>
+    <table class="table">
+        <thead>
+            <tr style="margin-bottom:20px">
+                <th class="tableTitle"></th>
+                <th class="tableTitle">Current</th>
+                <th class="tableTitle">New</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Display Name</td>
+                <td>@ViewBag.DisplayName</td>
+                <td>@Html.TextBoxFor(m => m.DisplayName, new { @class = "form-control" })</td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>@ViewBag.Email</td>
+                <td>@Html.TextBoxFor(m => m.Email, new { @class = "form-control" })</td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td>@ViewBag.Address</td>
+                <td>@Html.TextBoxFor(m => m.Address, new { @class = "form-control" })</td>
+            </tr>
+            <tr>
+                <td>City</td>
+                <td>@ViewBag.City</td>
+                <td>@Html.TextBoxFor(m => m.City, new { @class = "form-control" })</td>
+            </tr>
+            <tr>
+                <td>State</td>
+                <td>@ViewBag.State</td>
+                <td>@Html.TextBoxFor(m => m.State, new { @class = "form-control" })</td>
+            </tr>
+            <tr>
+                <td>Zipcode</td>
+                <td>@ViewBag.Zipcode</td>
+                <td>@Html.TextBoxFor(m => m.Zipcode, new { @class = "form-control" })</td>
+            </tr>
+        </tbody>
+        </table>
+    </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" class="btn btn-default" value="Update Your Information" />
+            </div>
+        </div>
+</div>
+}
+
+

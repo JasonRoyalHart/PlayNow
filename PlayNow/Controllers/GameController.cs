@@ -7,7 +7,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-
+using System.Configuration;
+using System.Data.SqlClient;
 
 namespace PlayNow.Controllers
 {
@@ -19,6 +20,7 @@ namespace PlayNow.Controllers
         public GameController()
         {
             _context = new ApplicationDbContext();
+
         }
         public ActionResult GameIndex()
         {
@@ -48,6 +50,7 @@ namespace PlayNow.Controllers
             _context.SaveChanges();
             return RedirectToAction("GameIndex", "Game");
         }
+
 
     }
 }

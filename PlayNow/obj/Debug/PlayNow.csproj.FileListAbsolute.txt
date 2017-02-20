@@ -77,11 +77,12 @@ c:\users\jason\documents\visual studio 2015\Projects\PlayNow\PlayNow\bin\Microso
 c:\users\jason\documents\visual studio 2015\Projects\PlayNow\PlayNow\bin\Microsoft.Owin.Security.Google.xml
 c:\users\jason\documents\visual studio 2015\Projects\PlayNow\PlayNow\bin\Microsoft.Owin.Security.Twitter.xml
 c:\users\jason\documents\visual studio 2015\Projects\PlayNow\PlayNow\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-c:\users\jason\documents\visual studio 2015\Projects\PlayNow\PlayNow\obj\Debug\PlayNow.csprojResolveAssemblyReference.cache
 c:\users\jason\documents\visual studio 2015\Projects\PlayNow\PlayNow\obj\Debug\PlayNow.dll
 c:\users\jason\documents\visual studio 2015\Projects\PlayNow\PlayNow\obj\Debug\PlayNow.pdb
-C:\Users\Jason\Documents\Visual Studio 2015\Projects\PlayNow\PlayNow\obj\Debug\PlayNow.Migrations.InitialCreate.resources
+C:\Users\Jason\Documents\Visual Studio 2015\Projects\PlayNow\PlayNow\bin\Microsoft.AspNet.SignalR.Core.dll
+C:\Users\Jason\Documents\Visual Studio 2015\Projects\PlayNow\PlayNow\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+C:\Users\Jason\Documents\Visual Studio 2015\Projects\PlayNow\PlayNow\bin\Microsoft.AspNet.SignalR.Core.xml
+C:\Users\Jason\Documents\Visual Studio 2015\Projects\PlayNow\PlayNow\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+C:\Users\Jason\Documents\Visual Studio 2015\Projects\PlayNow\PlayNow\obj\Debug\PlayNow.csprojResolveAssemblyReference.cache
+C:\Users\Jason\Documents\Visual Studio 2015\Projects\PlayNow\PlayNow\obj\Debug\PlayNow.Migrations._1migration.resources
 C:\Users\Jason\Documents\Visual Studio 2015\Projects\PlayNow\PlayNow\obj\Debug\PlayNow.csproj.GenerateResource.Cache
-C:\Users\Jason\Documents\Visual Studio 2015\Projects\PlayNow\PlayNow\obj\Debug\PlayNow.Migrations.FirstMigration.resources
-C:\Users\Jason\Documents\Visual Studio 2015\Projects\PlayNow\PlayNow\obj\Debug\PlayNow.Migrations.SecondMigration.resources
-C:\Users\Jason\Documents\Visual Studio 2015\Projects\PlayNow\PlayNow\obj\Debug\PlayNow.Migrations.ThirdMigration.resources

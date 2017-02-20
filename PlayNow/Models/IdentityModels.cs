@@ -23,6 +23,15 @@ namespace PlayNow.Models
         public DbSet<GameModel> GameModel { get; set; }
         public DbSet<GameSessionModel> GameSessionModel { get; set; }
         public DbSet<UserModel> UserModel { get; set; }
+        public DbSet<RPGModel> RPGModel { get; set; }
+        public DbSet<RPGSessionModel> RPGSessionModel { get; set; }
+        public DbSet <GameRatingModel> GameRatingModel { get; set; }
+        public DbSet<UserRatingModel> UserRatingModel { get; set; }
+        
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    base.OnModelCreating(modelBuilder);
+        //}
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

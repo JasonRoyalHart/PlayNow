@@ -1,4 +1,5 @@
-﻿using PlayNow.Models;
+﻿using PlayNow.Helpers;
+using PlayNow.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -28,6 +29,7 @@ namespace PlayNow.Models
         public int MaximumPlayers { get; set; }
 
         public IEnumerable<GameModel> GameModels { get; set; }
+
     }
 
 }

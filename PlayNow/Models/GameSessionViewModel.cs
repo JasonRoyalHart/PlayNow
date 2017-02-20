@@ -1,4 +1,5 @@
-﻿using PlayNow.Models;
+﻿using PlayNow.Helpers;
+using PlayNow.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -18,8 +19,8 @@ namespace PlayNow.Models
 
 
         [Required]
-        [Display(Name = "Game")]
-        public string Game { get; set; }
+        [Display(Name = "Game Name")]
+        public string Name { get; set; }
 
         [Required]
         [Display(Name = "Time")]
@@ -47,6 +48,19 @@ namespace PlayNow.Models
         [Required]
         [Display(Name = "Minimum Rating")]
         public int MinimumRating { get; set; }
+
+        [Required]
+        [Display(Name = "Require Approval")]
+        public bool ApprovalNeeded { get; set; }
+        public GameSessionModel GameSessionToEdit { get; set; }
+        public IEnumerable<UserModel> InvitableUsers { get; set; }
+
+        public IEnumerable<GameSessionModel> GameSessionModels { get; set; }
+        public IEnumerable<GameModel> GameModels { get; set; }
+        public Game Game { get; set; }
+        public int NumberOfCurrentUsers { get; set; }
+        public GameSession GameSession { get; set; }
+        public UserModel CurrentUserModel { get; set; }
     }
 
 }
