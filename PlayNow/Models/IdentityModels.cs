@@ -27,7 +27,8 @@ namespace PlayNow.Models
         public DbSet<RPGSessionModel> RPGSessionModel { get; set; }
         public DbSet <GameRatingModel> GameRatingModel { get; set; }
         public DbSet<UserRatingModel> UserRatingModel { get; set; }
-        
+        public DbSet<PublicPlaceModel> PublicPlaceModel { get; set; }
+        public DbSet<PublicPlaceRatingModel> PublicPlaceRatingModel { get; set; }
         //protected override void OnModelCreating(DbModelBuilder modelBuilder)
         //{
         //    base.OnModelCreating(modelBuilder);

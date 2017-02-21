@@ -52,6 +52,7 @@ namespace PlayNow.Models
         [Required]
         [Display(Name = "Require Approval")]
         public bool ApprovalNeeded { get; set; }
+        public int GameSessionId { get; set; }
         public GameSessionModel GameSessionToEdit { get; set; }
         public IEnumerable<UserModel> InvitableUsers { get; set; }
 

@@ -82,14 +82,48 @@ namespace PlayNow.Controllers
             var UsersInList = CreateInviteList(GameSessionToRemoveFrom);
             var GameSession = new GameSession();
             _context.SaveChanges();
-            var viewModel = new GameSessionViewModel()
-            {
-                GameSessionToEdit = ThisGameSession,
-                InvitableUsers = UsersInList,
-                GameSession = GameSession,
-                NumberOfCurrentUsers = ThisGameSession.Users.Count
-            };
+            var viewModel = CreateViewModel();
+            viewModel.GameSessionToEdit = ThisGameSession;
+            viewModel.InvitableUsers = UsersInList;
+            viewModel.GameSession = GameSession;
+            viewModel.NumberOfCurrentUsers = ThisGameSession.Users.Count;
+
             return View("Edit", viewModel);
+        }
+
+        public ActionResult Invite(int GameSessionToInvite)
+        {
+            var GameList = _context.GameSessionModel;
+            var ThisGameSession = GameList.Find(GameSessionToInvite);
+            var UsersInList = CreateInviteList(GameSessionToInvite);
+            var GameSession = new GameSession();
+            var viewModel = CreateViewModel();
+            viewModel.GameSessionToEdit = ThisGameSession;
+            viewModel.InvitableUsers = UsersInList;
+            viewModel.GameSession = GameSession;
+            viewModel.NumberOfCurrentUsers = ThisGameSession.Users.Count;
+            viewModel.GameSessionId = ThisGameSession.GameSessionId;
+            return View("Invite", viewModel);
+        }
+        public ActionResult InviteResult(GameSessionViewModel model)
+        {
+            var currentUserName = User.Identity.Name;
+            var currentUser = _context.Users.FirstOrDefault(m => m.UserName == currentUserName);
+            var GameList = _context.GameSessionModel;
+            int GameSessionId = model.GameSessionId;
+            var ThisGameSession = GameList.Find(GameSessionId);
+            var UsersInList = CreateInviteList(GameSessionId);
+            var GameSession = new GameSession();
+            int UserId = model.GameSession.UserId;
+            var UserToInvite = _context.UserModel.Find(UserId);
+            _context.GameSessionModel.Find(GameSessionId).InvitedUsers.Add(UserToInvite);
+            _context.SaveChanges();
+            var viewModel = CreateViewModel();
+            viewModel.GameSessionToEdit = ThisGameSession;
+            viewModel.InvitableUsers = UsersInList;
+            viewModel.GameSession = GameSession;
+            viewModel.NumberOfCurrentUsers = ThisGameSession.Users.Count;
+            return View("Invite", viewModel);
         }
         public List<UserModel> CreateInviteList(int GameSessionToEdit)
         {
@@ -155,7 +189,7 @@ namespace PlayNow.Controllers
             {
                 Game = new Game(),
                 GameSessionModels = MySessionList,
-                CurrentUserModel = currentUserModel,
+                CurrentUserModel = currentUserModel
             };
             return viewModel;
         }

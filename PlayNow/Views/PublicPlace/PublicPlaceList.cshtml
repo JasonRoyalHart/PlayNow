@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "PublicPlaceList";
+}
+
+<h2>Public Places</h2>
+
+<div>
+    <table class="table">
+        <thead>
+            <tr style="margin-bottom:20px">
+                <th class="tableTitle">Details</th>
+                <th class="tableTitle">Name</th>
+                <th class="tableTitle">Rating</th>
+                <th class="tableTitle">Address</th>
+                <th class="tableTitle">City</th>
+                <th class="tableTitle">State</th>
+                <th class="tableTitle">Zipcode</th>
+                <th class="tableTitle">Phone</th>
+                <th class="tableTitle">Website</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (var i = 0; i < Model.PublicPlaceModels.Count(); i++)
+            {
+                <tr>
+                    <td><input type="button" value="Details" onclick="location.href='@Url.Action("Details", "PublicPlace", new { PublicPlaceDetails = Model.PublicPlaceModels.ElementAt(i).PublicPlaceId })'" /></td>
+                    <td>@Model.PublicPlaceModels.ElementAt(i).Name</td>
+                    <td>@Model.PublicPlaceModels.ElementAt(i).AverageRating</td>
+                    <td>@Model.PublicPlaceModels.ElementAt(i).Address</td>
+                    <td>@Model.PublicPlaceModels.ElementAt(i).City</td>
+                    <td>@Model.PublicPlaceModels.ElementAt(i).State</td>
+                    <td>@Model.PublicPlaceModels.ElementAt(i).Zipcode</td>
+                    <td>@Model.PublicPlaceModels.ElementAt(i).Phone</td>
+                    <td>@Model.PublicPlaceModels.ElementAt(i).Website</td>
+                </tr>
+            }
+        </tbody>
+        </table>
+    </div>

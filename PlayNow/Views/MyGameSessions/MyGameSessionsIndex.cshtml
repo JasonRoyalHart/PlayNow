@@ -17,6 +17,7 @@
                 <thead>
                     <tr style="margin-bottom:20px">
                         <th class="tableTitle">Edit</th>
+                        <th class="tableTitle">Invite</th>
                         <th class="tableTitle">Game</th>
                         <th class="tableTitle">Minimum Players</th>
                         <th class="tableTitle">Maximum Players</th>
@@ -34,6 +35,14 @@
                     {
                         <tr>
                             <td><input type="button" value="Edit" onclick="location.href='@Url.Action("Edit", "MyGameSessions", new { GameSessionToEdit = Model.GameSessionModels.ElementAt(i).GameSessionId })'" /></td>
+                            @if (Model.GameSessionModels.ElementAt(i).Users.Count() < Model.GameSessionModels.ElementAt(i).MaximumPlayers)
+                            {
+                            <td><input type="button" value="Invite" onclick="location.href='@Url.Action("Invite", "MyGameSessions", new { GameSessionToInvite = Model.GameSessionModels.ElementAt(i).GameSessionId })'" /></td>
+                            }
+                            else
+                            {
+                                <td></td>
+                            }
                             <td>@Model.GameSessionModels.ElementAt(i).GameName</td>
                             <td>@Model.GameSessionModels.ElementAt(i).MinimumPlayers</td>
                             <td>@Model.GameSessionModels.ElementAt(i).MaximumPlayers</td>

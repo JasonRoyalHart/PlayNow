@@ -1,0 +1,103 @@
+﻿@model PlayNow.Models.PublicPlaceViewModel
+@{
+    ViewBag.Title = "PublicPlaceIndex";
+}
+
+<h2>Create a new game</h2>
+
+@using (Html.BeginForm("NewPublicPlaceResult", "PublicPlace", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <h4>Enter New Public Place Information</h4>
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Address, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.City, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.City, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.State, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.State, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Zipcode, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Zipcode, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Phone, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Website, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Website, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.MyRating, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.MyRating, new { @class = "form-control", @Value = "" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Add a public place" />
+        </div>
+    </div>
+
+
+    <div>
+        <table class="table">
+            <thead>
+                <tr style="margin-bottom:20px">
+                    <th class="tableTitle">Name</th>
+                    <th class="tableTitle">Rating</th>
+                    <th class="tableTitle">Address</th>
+                    <th class="tableTitle">City</th>
+                    <th class="tableTitle">State</th>
+                    <th class="tableTitle">Zipcode</th>
+                    <th class="tableTitle">Phone</th>
+                    <th class="tableTitle">Website</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (var i = 0; i < Model.PublicPlaceModels.Count(); i++)
+                {
+                    <tr>
+                        <td>@Model.PublicPlaceModels.ElementAt(i).Name</td>
+                        <td>@Model.PublicPlaceModels.ElementAt(i).AverageRating</td>
+                        <td>@Model.PublicPlaceModels.ElementAt(i).Address</td>
+                        <td>@Model.PublicPlaceModels.ElementAt(i).City</td>
+                        <td>@Model.PublicPlaceModels.ElementAt(i).State</td>
+                        <td>@Model.PublicPlaceModels.ElementAt(i).Zipcode</td>
+                        <td>@Model.PublicPlaceModels.ElementAt(i).Phone</td>
+                        <td>@Model.PublicPlaceModels.ElementAt(i).Website</td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+}

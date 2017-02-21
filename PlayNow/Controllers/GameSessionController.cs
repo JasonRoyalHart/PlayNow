@@ -37,6 +37,8 @@ namespace PlayNow.Controllers
         {
             var currentUserName = User.Identity.Name;
             var currentUser = _context.Users.FirstOrDefault(m => m.UserName == currentUserName);
+//            @Html.DropDownListFor(m => m.Game.GameId, new SelectList(Model.GameModels, "GameId", "Name"), "Choose a game", new { @class = "form-control" })
+
             int GameId = model.Game.GameId;
             string GameName = _context.GameModel.Find(GameId).Name;
             Game Game = model.Game;
@@ -70,7 +72,7 @@ namespace PlayNow.Controllers
             var currentUserModel = _context.UserModel.FirstOrDefault(m => m.Email == currentUserName);
             GameSession.Users.Add(currentUserModel);
             _context.SaveChanges();
-            return RedirectToAction("GameSessionIndex", "GameSession");
+            return View("GameSessionIndex");
         }
     }
 }

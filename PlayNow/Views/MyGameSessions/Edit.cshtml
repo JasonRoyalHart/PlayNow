@@ -4,7 +4,9 @@
 }
 
 <h2>Edit A Game</h2>
-
+@using (Html.BeginForm("NewGameResult", "Game", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
 <div>
     <table class="table">
         <thead>
@@ -53,16 +55,23 @@
                         <td>None</td>
                     }
 
-                    @if (i + 1 <= Model.NumberOfCurrentUsers && Model.CurrentUserModel.UserId != Model.GameSessionToEdit.Users.ElementAt(i).UserId)
+                    @if (i + 1 <= Model.NumberOfCurrentUsers)
                     {
-                        <td><input type="button" value="Remove" onclick="location.href='@Url.Action("Remove", "MyGameSessions", new { GameSessionToRemoveFrom = Model.GameSessionToEdit.GameSessionId, UserNumberToRemove = i})'" /></td>
+                        if (Model.CurrentUserModel.UserId == Model.GameSessionToEdit.Users.ElementAt(i).UserId)
+                        {
+                            <td></td>
+                        }
+                        else
+                        {
+                            <td><input type="button" value="Remove" onclick="location.href='@Url.Action("Remove", "MyGameSessions", new { GameSessionToRemoveFrom = Model.GameSessionToEdit.GameSessionId, UserNumberToRemove = i })'" /></td>
+                        }
                     }
                     else
                     {
-                        <td>Invite</td>
-                        <td>@Html.DropDownListFor(m => m.GameSession.GameSessionId, new SelectList(Model.InvitableUsers, "UserId", "DisplayName"), "Name", new { @class = "form-control" })</td>
+                        <td></td>
                     }
                 </tr>
             }
         </table>
 </div>
+}

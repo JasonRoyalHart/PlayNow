@@ -210,6 +210,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MyGameSessionsController.cs" />
+    <Compile Include="Controllers\PublicPlaceController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -223,6 +224,22 @@
     <Compile Include="Migrations\201702171958599_1migration.Designer.cs">
       <DependentUpon>201702171958599_1migration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702201926547_2migration.cs" />
+    <Compile Include="Migrations\201702201926547_2migration.Designer.cs">
+      <DependentUpon>201702201926547_2migration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702202124161_3migration.cs" />
+    <Compile Include="Migrations\201702202124161_3migration.Designer.cs">
+      <DependentUpon>201702202124161_3migration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702202152161_4migration.cs" />
+    <Compile Include="Migrations\201702202152161_4migration.Designer.cs">
+      <DependentUpon>201702202152161_4migration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702202226296_5migration.cs" />
+    <Compile Include="Migrations\201702202226296_5migration.Designer.cs">
+      <DependentUpon>201702202226296_5migration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\GameListModel.cs" />
@@ -234,6 +251,9 @@
     <Compile Include="Models\GameViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\PublicPlaceModel.cs" />
+    <Compile Include="Models\PublicPlaceRatingModel.cs" />
+    <Compile Include="Models\PublicPlaceViewModel.cs" />
     <Compile Include="Models\RPGModel.cs" />
     <Compile Include="Models\RPGSessionModel.cs" />
     <Compile Include="Models\UserModel.cs" />
@@ -310,6 +330,9 @@
     <Content Include="Views\Home\Chat.cshtml" />
     <Content Include="Views\MyGameSessions\MyGameSessionsIndex.cshtml" />
     <Content Include="Views\MyGameSessions\Edit.cshtml" />
+    <Content Include="Views\MyGameSessions\Invite.cshtml" />
+    <Content Include="Views\PublicPlace\PublicPlaceIndex.cshtml" />
+    <Content Include="Views\PublicPlace\PublicPlaceList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -326,6 +349,18 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201702171958599_1migration.resx">
       <DependentUpon>201702171958599_1migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702201926547_2migration.resx">
+      <DependentUpon>201702201926547_2migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702202124161_3migration.resx">
+      <DependentUpon>201702202124161_3migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702202152161_4migration.resx">
+      <DependentUpon>201702202152161_4migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702202226296_5migration.resx">
+      <DependentUpon>201702202226296_5migration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

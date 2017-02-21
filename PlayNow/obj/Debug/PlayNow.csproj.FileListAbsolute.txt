@@ -86,3 +86,7 @@ C:\Users\Jason\Documents\Visual Studio 2015\Projects\PlayNow\PlayNow\bin\Microso
 C:\Users\Jason\Documents\Visual Studio 2015\Projects\PlayNow\PlayNow\obj\Debug\PlayNow.csprojResolveAssemblyReference.cache
 C:\Users\Jason\Documents\Visual Studio 2015\Projects\PlayNow\PlayNow\obj\Debug\PlayNow.Migrations._1migration.resources
 C:\Users\Jason\Documents\Visual Studio 2015\Projects\PlayNow\PlayNow\obj\Debug\PlayNow.csproj.GenerateResource.Cache
+C:\Users\Jason\Documents\Visual Studio 2015\Projects\PlayNow\PlayNow\obj\Debug\PlayNow.Migrations._2migration.resources
+C:\Users\Jason\Documents\Visual Studio 2015\Projects\PlayNow\PlayNow\obj\Debug\PlayNow.Migrations._3migration.resources
+C:\Users\Jason\Documents\Visual Studio 2015\Projects\PlayNow\PlayNow\obj\Debug\PlayNow.Migrations._4migration.resources
+C:\Users\Jason\Documents\Visual Studio 2015\Projects\PlayNow\PlayNow\obj\Debug\PlayNow.Migrations._5migration.resources
