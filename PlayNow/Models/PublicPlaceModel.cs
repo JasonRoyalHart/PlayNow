@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PlayNow.Helpers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -10,7 +11,7 @@ namespace PlayNow.Models
     public class PublicPlaceModel
     {
         [Key]
-        public int PublicPlaceID { get; set; }
+        public int PublicPlaceId { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
         public string City { get; set; }
@@ -26,6 +27,9 @@ namespace PlayNow.Models
         {
             Ratings = new List<PublicPlaceRatingModel>();
         }
+        public int MyRating { get; set; }
         public virtual ICollection<PublicPlaceRatingModel> Ratings { get; set; }
+        public Game Game;
+        public IEnumerable<GameModel> GameModels;
     }
 }

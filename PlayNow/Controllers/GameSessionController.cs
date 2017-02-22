@@ -37,9 +37,8 @@ namespace PlayNow.Controllers
         {
             var currentUserName = User.Identity.Name;
             var currentUser = _context.Users.FirstOrDefault(m => m.UserName == currentUserName);
-//            @Html.DropDownListFor(m => m.Game.GameId, new SelectList(Model.GameModels, "GameId", "Name"), "Choose a game", new { @class = "form-control" })
-
             int GameId = model.Game.GameId;
+//            if (GameId != 0)
             string GameName = _context.GameModel.Find(GameId).Name;
             Game Game = model.Game;
             string Name = model.Name;

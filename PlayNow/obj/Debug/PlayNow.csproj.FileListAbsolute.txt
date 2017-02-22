@@ -90,3 +90,5 @@ C:\Users\Jason\Documents\Visual Studio 2015\Projects\PlayNow\PlayNow\obj\Debug\P
 C:\Users\Jason\Documents\Visual Studio 2015\Projects\PlayNow\PlayNow\obj\Debug\PlayNow.Migrations._3migration.resources
 C:\Users\Jason\Documents\Visual Studio 2015\Projects\PlayNow\PlayNow\obj\Debug\PlayNow.Migrations._4migration.resources
 C:\Users\Jason\Documents\Visual Studio 2015\Projects\PlayNow\PlayNow\obj\Debug\PlayNow.Migrations._5migration.resources
+C:\Users\Jason\Documents\Visual Studio 2015\Projects\PlayNow\PlayNow\obj\Debug\PlayNow.Migrations._6migration.resources
+C:\Users\Jason\Documents\Visual Studio 2015\Projects\PlayNow\PlayNow\obj\Debug\PlayNow.Migrations._7migration.resources

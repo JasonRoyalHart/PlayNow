@@ -1,4 +1,5 @@
-﻿
+﻿@model PlayNow.Models.PublicPlaceViewModel
+
 @{
     ViewBag.Title = "PublicPlaceList";
 }
@@ -24,7 +25,7 @@
             @for (var i = 0; i < Model.PublicPlaceModels.Count(); i++)
             {
                 <tr>
-                    <td><input type="button" value="Details" onclick="location.href='@Url.Action("Details", "PublicPlace", new { PublicPlaceDetails = Model.PublicPlaceModels.ElementAt(i).PublicPlaceId })'" /></td>
+                    <td><input type="button" value="Details" onclick="location.href='@Url.Action("Details", "PublicPlace", new { PublicPlaceDetails = Model.PublicPlaceModels.ElementAt(i).PublicPlaceId})'" /></td>
                     <td>@Model.PublicPlaceModels.ElementAt(i).Name</td>
                     <td>@Model.PublicPlaceModels.ElementAt(i).AverageRating</td>
                     <td>@Model.PublicPlaceModels.ElementAt(i).Address</td>
