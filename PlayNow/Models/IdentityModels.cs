@@ -29,6 +29,9 @@ namespace PlayNow.Models
         public DbSet<UserRatingModel> UserRatingModel { get; set; }
         public DbSet<PublicPlaceModel> PublicPlaceModel { get; set; }
         public DbSet<PublicPlaceRatingModel> PublicPlaceRatingModel { get; set; }
+        public DbSet<ChatRoomModel> ChatRoomModel { get; set; }
+
+        public DbSet<ChatRoomMessageModel> ChatRoomMessageModel { get; set; }
         //protected override void OnModelCreating(DbModelBuilder modelBuilder)
         //{
         //    base.OnModelCreating(modelBuilder);

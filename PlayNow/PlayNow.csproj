@@ -207,6 +207,7 @@
     <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\GameListController.cs" />
     <Compile Include="Controllers\GameSessionController.cs" />
+    <Compile Include="Controllers\GeneralChatController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MyGameSessionsController.cs" />
@@ -220,36 +221,17 @@
     <Compile Include="Helpers\GameSession.cs" />
     <Compile Include="Helpers\Location.cs" />
     <Compile Include="Hubs\ChatHub.cs" />
-    <Compile Include="Migrations\201702171958599_1migration.cs" />
-    <Compile Include="Migrations\201702171958599_1migration.Designer.cs">
-      <DependentUpon>201702171958599_1migration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702201926547_2migration.cs" />
-    <Compile Include="Migrations\201702201926547_2migration.Designer.cs">
-      <DependentUpon>201702201926547_2migration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702202124161_3migration.cs" />
-    <Compile Include="Migrations\201702202124161_3migration.Designer.cs">
-      <DependentUpon>201702202124161_3migration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702202152161_4migration.cs" />
-    <Compile Include="Migrations\201702202152161_4migration.Designer.cs">
-      <DependentUpon>201702202152161_4migration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702202226296_5migration.cs" />
-    <Compile Include="Migrations\201702202226296_5migration.Designer.cs">
-      <DependentUpon>201702202226296_5migration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702211430022_6migration.cs" />
-    <Compile Include="Migrations\201702211430022_6migration.Designer.cs">
-      <DependentUpon>201702211430022_6migration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702212123261_7migration.cs" />
-    <Compile Include="Migrations\201702212123261_7migration.Designer.cs">
-      <DependentUpon>201702212123261_7migration.cs</DependentUpon>
+    <Compile Include="Migrations\201702230309056_1migration.cs" />
+    <Compile Include="Migrations\201702230309056_1migration.Designer.cs">
+      <DependentUpon>201702230309056_1migration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ChatRoomAndMessageViewModel.cs" />
+    <Compile Include="Models\ChatRoomMessageModel.cs" />
+    <Compile Include="Models\ChatRoomMessageViewModel.cs" />
+    <Compile Include="Models\ChatRoomModel.cs" />
+    <Compile Include="Models\ChatRoomViewModel.cs" />
     <Compile Include="Models\GameListModel.cs" />
     <Compile Include="Models\GameListViewModel.cs" />
     <Compile Include="Models\GameModel.cs" />
@@ -288,6 +270,8 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.signalR-2.2.1.js" />
     <Content Include="Scripts\jquery.signalR-2.2.1.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -342,6 +326,13 @@
     <Content Include="Views\PublicPlace\PublicPlaceIndex.cshtml" />
     <Content Include="Views\PublicPlace\PublicPlaceList.cshtml" />
     <Content Include="Views\PublicPlace\Details.cshtml" />
+    <Content Include="Views\Shared\GeneralChatRoomPartial.cshtml" />
+    <Content Include="Views\Shared\GeneralChatRoomAddMessagePartial.cshtml" />
+    <Content Include="Views\GeneralChat\GeneralChatIndex.cshtml" />
+    <Content Include="Views\GameSession\Details.cshtml" />
+    <Content Include="Views\Shared\GameSessionDetailsPartial.cshtml" />
+    <Content Include="Views\Shared\GameSessionChatRoomPartial.cshtml" />
+    <Content Include="Views\Shared\GameSessionChatRoomAddMessagePartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -356,26 +347,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201702171958599_1migration.resx">
-      <DependentUpon>201702171958599_1migration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702201926547_2migration.resx">
-      <DependentUpon>201702201926547_2migration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702202124161_3migration.resx">
-      <DependentUpon>201702202124161_3migration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702202152161_4migration.resx">
-      <DependentUpon>201702202152161_4migration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702202226296_5migration.resx">
-      <DependentUpon>201702202226296_5migration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702211430022_6migration.resx">
-      <DependentUpon>201702211430022_6migration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702212123261_7migration.resx">
-      <DependentUpon>201702212123261_7migration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201702230309056_1migration.resx">
+      <DependentUpon>201702230309056_1migration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

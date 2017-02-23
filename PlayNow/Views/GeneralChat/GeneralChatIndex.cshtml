@@ -1,0 +1,62 @@
+﻿@model PlayNow.Models.ChatRoomAndMessageViewModel
+@using PlayNow.Models
+@{
+    ViewBag.Title = "GeneralChatIndex";
+}
+
+@{
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    ChatRoomViewModel ChatRoom = Model.ChatRoom;
+    ChatRoomMessageViewModel Message = Model.ChatRoomMessages;
+}
+
+<div id="Messages" name="Messages">
+
+</div>
+<div id="Submit" name="Submit">
+
+</div>
+
+
+<script>
+    function loadMessagesView() {
+        $.ajax({
+            url: '@Url.Action("GeneralChatMessages", "GeneralChat")',
+            type: 'post',
+            cache: false,
+            async: true,
+            data: { id: "frmUser" },
+            success: function (result) {
+                jQuery('#Messages').html(result);
+            }
+        });
+    }
+    function loadChatView() {
+        $.ajax({
+            url: '@Url.Action("GeneralChat", "GeneralChat")',
+            type: 'post',
+            cache: false,
+            async: true,
+            data: { id: "frmUser" },
+            success: function (result) {
+                jQuery('#Submit').html(result);
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        loadMessagesView();
+        loadChatView();
+    });
+    $(document).ready(function () {
+        function RefreshPartial() {
+            setTimeout(function () {
+               loadMessagesView();
+                RefreshPartial();
+            }, 1000);
+        }
+        RefreshPartial();
+    });
+
+</script>

@@ -47,7 +47,7 @@ namespace PlayNow.Models
 
         [Required]
         [Display(Name = "Minimum Rating")]
-        public int MinimumRating { get; set; }
+        public double MinimumRating { get; set; }
 
         [Required]
         [Display(Name = "Require Approval")]
@@ -62,6 +62,11 @@ namespace PlayNow.Models
         public int NumberOfCurrentUsers { get; set; }
         public GameSession GameSession { get; set; }
         public UserModel CurrentUserModel { get; set; }
+        public string GameName { get; set; }
+        public string Creator { get; set; }
+        public virtual ICollection<UserModel> Users { get; set; }
+        public virtual ICollection<UserModel> UsersNeedingApproval { get; set; }
+        public virtual ICollection<UserModel> InvitedUsers { get; set; }
     }
 
 }

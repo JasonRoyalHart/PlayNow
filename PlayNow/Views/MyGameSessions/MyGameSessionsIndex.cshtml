@@ -6,16 +6,14 @@
 
 
     @Html.AntiForgeryToken()
-    if (ViewBag.Message != null)
-    {
-        @ViewBag.Message
-    }
-    <h2>Game Sessions You Created</h2>
+
+    <h2>Game Sessions You're Involved In</h2>
 
     <div>
             <table class="table">
                 <thead>
                     <tr style="margin-bottom:20px">
+                        <th class="tableTitle">Details</th>
                         <th class="tableTitle">Edit</th>
                         <th class="tableTitle">Invite</th>
                         <th class="tableTitle">Game</th>
@@ -34,6 +32,7 @@
                     @for (var i = 0; i < Model.GameSessionModels.Count(); i++)
                     {
                         <tr>
+                            <td><input type="button" value="Details" onclick="location.href='@Url.Action("Details", "GameSession", new { GameSessionDetails = Model.GameSessionModels.ElementAt(i).GameSessionId })'" /></td>
                             <td><input type="button" value="Edit" onclick="location.href='@Url.Action("Edit", "MyGameSessions", new { GameSessionToEdit = Model.GameSessionModels.ElementAt(i).GameSessionId })'" /></td>
                             @if (Model.GameSessionModels.ElementAt(i).Users.Count() < Model.GameSessionModels.ElementAt(i).MaximumPlayers)
                             {

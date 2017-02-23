@@ -1,0 +1,73 @@
+﻿@model PlayNow.Models.GameSessionViewModel
+@{
+    ViewBag.Title = "Details";
+}
+@{
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    }
+<div id="Details" name="Details">
+
+</div>
+<div id="Messages" name="Messages">
+
+</div>
+<div id="Submit" name="Submit">
+
+</div>
+
+
+<script>
+    function loadDetailsView() {
+        $.ajax({
+            url: '@Url.Action("DetailsPartial", "GameSession")',
+            type: 'post',
+            cache: false,
+            async: true,
+            data: { GameSessionDetails: @Model.GameSessionId },
+            success: function (result) {
+                jQuery('#Details').html(result);
+            }
+        });
+    }
+    function loadMessagesView() {
+        $.ajax({
+            url: '@Url.Action("GeneralChatMessages", "GameSession")',
+            type: 'post',
+            cache: false,
+            async: true,
+            data: { GameSessionId: @Model.GameSessionId },
+            success: function (result) {
+                jQuery('#Messages').html(result);
+            }
+        });
+    }
+    function loadChatView() {
+        $.ajax({
+            url: '@Url.Action("GeneralChat", "GameSession")',
+            type: 'post',
+            cache: false,
+            async: true,
+            data: { GameSessionId: @Model.GameSessionId },
+            success: function (result) {
+                jQuery('#Submit').html(result);
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        loadDetailsView();
+        loadMessagesView();
+        loadChatView();
+    });
+    $(document).ready(function () {
+        function RefreshPartial() {
+            setTimeout(function () {
+               loadMessagesView();
+                RefreshPartial();
+            }, 1000);
+        }
+        RefreshPartial();
+    });
+
+</script>

@@ -1,0 +1,90 @@
+﻿@model PlayNow.Models.GameSessionViewModel
+@{
+    ViewBag.Title = "GameSessionDetailsPartial";
+}
+
+<h2>Game Session Details</h2>
+
+@Html.HiddenFor(m => m.GameSessionId)
+
+<div>
+    <table class="table">
+        <thead>
+            <tr style="margin-bottom:20px">
+                <th class="tableTitle"></th>
+                <th class="tableTitle"></th>
+                <th class="tableTitle"></th>
+                <th class="tableTitle"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Game</td>
+                <td>@Model.GameName</td>
+            </tr>
+            <tr>
+                <td>Creator</td>
+                <td>@Model.Creator</td>
+            </tr>
+            <tr>
+                <td>Time</td>
+                <td>@Model.Time</td>
+            </tr>
+            <tr>
+                <td>Day</td>
+                <td>@Model.Day</td>
+            </tr>
+            <tr>
+                <td>Month</td>
+                <td>@Model.Month</td>
+            </tr>
+            <tr>
+                <td>Year</td>
+                <td>@Model.Year</td>
+            </tr>
+            <tr>
+                <td>Minimum Players</td>
+                <td>@Model.MinimumPlayers</td>
+            </tr>
+            <tr>
+                <td>Maximum Players</td>
+                <td>@Model.MaximumPlayers</td>
+            </tr>
+            <tr>
+                <td>Minimum Rating</td>
+                <td>@Model.MinimumRating</td>
+            </tr>
+            <tr>
+                <td>Players</td>
+                <td>
+                    @foreach (var User in Model.Users)
+            {
+                        @User.DisplayName
+                        <br />
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>Players Needing Approval</td>
+                <td>
+                    @foreach (var User in Model.UsersNeedingApproval)
+                    {
+                        @User.DisplayName
+                        <br />
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>Invited Players</td>
+                <td>
+                    @foreach (var User in Model.InvitedUsers)
+                    {
+                        @User.DisplayName
+                        <br />
+                    }
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+

@@ -175,14 +175,44 @@ namespace PlayNow.Controllers
             var currentUserName = User.Identity.Name;
             var currentUser = _context.Users.FirstOrDefault(m => m.UserName == currentUserName);
             var currentUserModel = _context.UserModel.FirstOrDefault(m => m.Email == currentUserName);
+            var currentUserId = currentUserModel.UserId;
             var restList = _context.GameSessionModel;
             List<GameSessionModel> MySessionList = new List<GameSessionModel>();
             for (int i = 1; i < restList.Count(); i++)
             {
-                string Creator = restList.Find(i).Creator;
-                if (Creator == currentUserName)
+                var Session = restList.Find(i);
+                if (Session.InvitedUsers != null)
                 {
-                    MySessionList.Add(restList.Find(i));
+                    for (int j = 0; j < Session.InvitedUsers.Count; j++)
+                    {
+                        var User = Session.InvitedUsers.ElementAt(j).UserId;
+                        if (currentUserId == User)
+                        {
+                            MySessionList.Add(Session);
+                        }
+                    }
+                }
+                if (Session.Users != null)
+                {
+                    for (int j = 0; j < Session.Users.Count; j++)
+                    {
+                        var User = Session.Users.ElementAt(j).UserId;
+                        if (currentUserId == User)
+                        {
+                            MySessionList.Add(Session);
+                        }
+                    }
+                }
+                if (Session.UsersNeedingApproval != null)
+                {
+                    for (int j = 0; j < Session.UsersNeedingApproval.Count; j++)
+                    {
+                        var User = Session.UsersNeedingApproval.ElementAt(j).UserId;
+                        if (currentUserId == User)
+                        {
+                            MySessionList.Add(Session);
+                        }
+                    }
                 }
             }
             var viewModel = new GameSessionViewModel()

@@ -14,8 +14,9 @@ namespace PlayNow.Models
         public GameSessionModel()
         {
             this.Users = new HashSet<UserModel>();
-//            this.UsersNeedingApproval = new HashSet<UserModel>();
-//            this.InvitedUsers = new HashSet<UserModel>();
+            this.ChatRooms = new HashSet<ChatRoomModel>();
+            //            this.UsersNeedingApproval = new HashSet<UserModel>();
+            //            this.InvitedUsers = new HashSet<UserModel>();
         }
         [Key]
         public int GameSessionId { get; set; }
@@ -40,5 +41,6 @@ namespace PlayNow.Models
         public virtual ICollection<UserModel> InvitedUsers { get; set; }
         public int UserId { get; set; }
         public bool ApprovalNeeded { get; set; }
+        public virtual ICollection<ChatRoomModel> ChatRooms { get; set; }
     }
 }

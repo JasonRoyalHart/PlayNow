@@ -47,16 +47,16 @@ namespace PlayNow.Controllers
         public ActionResult UpdateUserResult(UserViewModel model)
         {
             string DisplayName = model.DisplayName;
-            string Email = model.Email;
             string Address = model.Address;
             string City = model.City;
             string State = model.State;
             string Zipcode = model.Zipcode;
+            string Email = model.Email;
             var User = new UserModel()
             {
                 DisplayName = DisplayName,
-                Email = Email,
                 Address = Address,
+                Email = Email,
                 City = City,
                 Zipcode = Zipcode
             };
