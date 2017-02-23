@@ -225,6 +225,10 @@
     <Compile Include="Migrations\201702230309056_1migration.Designer.cs">
       <DependentUpon>201702230309056_1migration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702230555499_2migration.cs" />
+    <Compile Include="Migrations\201702230555499_2migration.Designer.cs">
+      <DependentUpon>201702230555499_2migration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ChatRoomAndMessageViewModel.cs" />
@@ -349,6 +353,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201702230309056_1migration.resx">
       <DependentUpon>201702230309056_1migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702230555499_2migration.resx">
+      <DependentUpon>201702230555499_2migration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

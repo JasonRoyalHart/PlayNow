@@ -14,5 +14,6 @@ namespace PlayNow.Models
         public int User { get; set; }
         public string UserName { get; set; }
         public string Message { get; set; }
+        public int GameSession { get; set; }
     }
 }

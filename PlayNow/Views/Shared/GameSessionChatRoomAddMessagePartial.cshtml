@@ -1,7 +1,26 @@
-﻿
+﻿@model PlayNow.Models.ChatRoomMessageViewModel
 @{
     ViewBag.Title = "GameSessionChatRoomAddMessagePartial";
 }
 
-<h2>GameSessionChatRoomAddMessagePartial</h2>
-
+@using (Html.BeginForm("AddMessage", "GameSession", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.GameSession)
+    <div>
+        <table class="table">
+            <thead>
+                <tr style="margin-bottom:20px">
+                    <th class="tableTitle"></th>
+                    <th class="tableTitle"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Html.TextBoxFor(m => m.Message, new { @class = "form-control" })</td>
+                    <td><input type="submit" class="btn btn-default" value="Submit Message" /></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+}

@@ -147,15 +147,68 @@ namespace PlayNow.Controllers
                 ChatRoomId = ChatRoom.ChatRoomId,
                 Messages = Messages
             };
-            return PartialView("GeneralChatRoomPartial", ChatRoomViewModel);
+            return PartialView("GameSessionChatRoomPartial", ChatRoomViewModel);
         }
-        public ActionResult GeneralChat()
+        public ActionResult GeneralChat(int GameSessionId)
         {
             var ChatRoomMessageViewModel = new ChatRoomMessageViewModel()
             {
-
+                GameSession = GameSessionId
             };
-            return PartialView("GeneralChatRoomAddMessagePartial", ChatRoomMessageViewModel);
+            return PartialView("GameSessionChatRoomAddMessagePartial", ChatRoomMessageViewModel);
+        }
+        public ActionResult AddMessage(ChatRoomMessageViewModel model)
+        {
+            var GameSessionId = model.GameSession;
+            string NewMessage = model.Message;
+            var currentUserName = User.Identity.Name;
+            var currentUser = _context.UserModel.FirstOrDefault(m => m.Email == currentUserName);
+            string CompleteMessage = currentUser.DisplayName + " says " + NewMessage;
+            var ChatRoomMessage = new ChatRoomMessageModel
+            {
+                User = currentUser.UserId,
+                UserName = currentUser.DisplayName,
+                Message = CompleteMessage
+            };
+            var ChatRoom = _context.ChatRoomModel.FirstOrDefault(m => m.GameSession.GameSessionId == GameSessionId);
+            _context.ChatRoomModel.Find(ChatRoom.ChatRoomId).Messages.Add(ChatRoomMessage);
+            _context.SaveChanges();
+            var Messages = _context.ChatRoomModel.Find(ChatRoom.ChatRoomId).Messages;
+
+            //var ChatRoomViewModel = new ChatRoomViewModel()
+            //{
+            //    ChatRoomId = ChatRoom.ChatRoomId,
+            //    Messages = Messages
+            //};
+            //var ChatRoomMessageViewModel = new ChatRoomMessageViewModel()
+            //{
+
+            //};
+
+            var restList = _context.GameSessionModel;
+            var gameList = _context.GameModel.ToList();
+            var GameSession = _context.GameSessionModel.Find(GameSessionId);
+            var viewModel = new GameSessionViewModel()
+            {
+                Game = new Game(),
+                GameSessionId = GameSessionId,
+                GameSessionModels = restList,
+                GameModels = gameList,
+                GameName = GameSession.GameName,
+                Time = GameSession.Time,
+                Day = GameSession.Day,
+                Month = GameSession.Month,
+                Creator = GameSession.Creator,
+                Year = GameSession.Year,
+                ApprovalNeeded = GameSession.ApprovalNeeded,
+                MinimumPlayers = GameSession.MinimumPlayers,
+                MaximumPlayers = GameSession.MaximumPlayers,
+                MinimumRating = GameSession.MinimumRating,
+                Users = GameSession.Users,
+                InvitedUsers = GameSession.InvitedUsers,
+                UsersNeedingApproval = GameSession.UsersNeedingApproval
+            };
+            return View("Details", viewModel);
         }
     }
 }
