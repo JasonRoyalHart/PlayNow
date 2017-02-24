@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "InviteIndex";
+}
+
+<h2>Your invitations</h2>
+
+@using PlayNow.Models
+
+@{
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+}
+
+<div id="GameInvites" name="GameInvites">
+
+</div>
+<div id="RPGInvites" name="RPGInvites">
+
+</div>
+
+
+<script>
+    function loadGameInvitesView() {
+        $.ajax({
+            url: '@Url.Action("GameInvites", "Invite")',
+            type: 'post',
+            cache: false,
+            async: true,
+            success: function (result) {
+                jQuery('#GameInvites').html(result);
+            }
+        });
+    }
+    function loadRPGInvitesView() {
+        $.ajax({
+            url: '@Url.Action("RPGInvites", "Invite")',
+            type: 'post',
+            cache: false,
+            async: true,
+            success: function (result) {
+                jQuery('RPGInvites').html(result);
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        loadGameInvitesView();
+        loadRPGInvitesView();
+    });
+
+    //$(document).ready(function () {
+    //    function RefreshPartial() {
+    //        setTimeout(function () {
+    //           loadMessagesView();
+    //            RefreshPartial();
+    //        }, 1000);
+    //    }
+    //    RefreshPartial();
+    //});
+
+</script>
+

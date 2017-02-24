@@ -209,6 +209,7 @@
     <Compile Include="Controllers\GameSessionController.cs" />
     <Compile Include="Controllers\GeneralChatController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InviteController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MyGameSessionsController.cs" />
     <Compile Include="Controllers\MyRPGSessionsController.cs" />
@@ -393,6 +394,9 @@
     <Content Include="Views\MyRPGSessions\Invite.cshtml" />
     <Content Include="Views\MyRPGSessions\MyRPGSessionsIndex.cshtml" />
     <Content Include="Views\Shared\RPGSessionDetailsPartial.cshtml" />
+    <Content Include="Views\Invite\InviteIndex.cshtml" />
+    <Content Include="Views\Shared\GameInvitePartial.cshtml" />
+    <Content Include="Views\Shared\RPGInvitePartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

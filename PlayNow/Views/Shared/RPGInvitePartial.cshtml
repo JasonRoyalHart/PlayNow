@@ -1,0 +1,81 @@
+﻿
+@model PlayNow.Models.RPGListViewModel
+@{
+    ViewBag.Title = "RPGListIndex";
+}
+
+
+@Html.AntiForgeryToken()
+
+<h2>Role Playing Game Sessions You've Been Invited To</h2>
+
+<div>
+    <table class="table">
+        <thead>
+            <tr style="margin-bottom:20px">
+                <th class="tableTitle">Join</th>
+                <th class="tableTitle">Game</th>
+                <th class="tableTitle">Creator</th>
+                <th class="tableTitle">GM</th>
+                <th class="tableTitle">Minimum Players</th>
+                <th class="tableTitle">Maximum Players</th>
+                <th class="tableTitle">Time</th>
+                <th class="tableTitle">Day</th>
+                <th class="tableTitle">Month</th>
+                <th class="tableTitle">Year</th>
+                <th class="tableTitle">Repeats</th>
+                <th class="tableTitle">Current Players</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (var i = 0; i < Model.RPGSessionModels.Count(); i++)
+            {
+                bool Display = true;
+                bool DisplayJoin = true;
+                var GameSessionUsers = Model.RPGSessionModels.ElementAt(i).Users;
+                foreach (var j in GameSessionUsers)
+                {
+                    if (j.UserId == Model.CurrentUserId)
+                    {
+                        DisplayJoin = false;
+                    }
+                }
+                if (Display)
+                {
+                    <tr>
+                        @if (DisplayJoin)
+                        {
+                            <td><input type="button" value="Join" onclick="location.href='@Url.Action("Join", "RPGList", new { RPGSessionToJoin = Model.RPGSessionModels.ElementAt(i).RPGSessionId })'" /></td>
+                        }
+                        else
+                        {
+                            <td></td>
+                        }
+                        <td>@Model.RPGSessionModels.ElementAt(i).RPGName</td>
+                        <td>@Model.RPGSessionModels.ElementAt(i).Creator</td>
+                        <td>@Model.RPGSessionModels.ElementAt(i).GMName</td>
+                        <td>@Model.RPGSessionModels.ElementAt(i).MinimumPlayers</td>
+                        <td>@Model.RPGSessionModels.ElementAt(i).MaximumPlayers</td>
+                        <td>@Model.RPGSessionModels.ElementAt(i).Time</td>
+                        <td>@Model.RPGSessionModels.ElementAt(i).Day</td>
+                        <td>@Model.RPGSessionModels.ElementAt(i).Month</td>
+                        <td>@Model.RPGSessionModels.ElementAt(i).Year</td>
+                        <td>@Model.RPGSessionModels.ElementAt(i).Repeats</td>
+                        @if (Model.RPGSessionModels.ElementAt(i).Users.Count() > 0)
+                        {
+                            <td>
+                                @for (var j = 0; j < Model.RPGSessionModels.ElementAt(i).Users.Count(); j++)
+                                {
+                                    @Model.RPGSessionModels.ElementAt(i).Users.ElementAt(j).DisplayName
+                                    <br />
+                                }
+                            </td>
+                        }
+
+                    </tr>
+                }
+            }
+        </tbody>
+
+    </table>
+</div>
