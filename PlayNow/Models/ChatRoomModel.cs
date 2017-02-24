@@ -15,5 +15,6 @@ namespace PlayNow.Models
         public virtual ICollection<ChatRoomMessageModel> Messages { get; set; }
         public virtual GameSessionModel GameSession { get; set; }
 
+        public virtual RPGSessionModel RPGSession { get; set; }
     }
 }

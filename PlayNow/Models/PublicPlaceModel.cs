@@ -29,7 +29,9 @@ namespace PlayNow.Models
         }
         public int MyRating { get; set; }
         public virtual ICollection<PublicPlaceRatingModel> Ratings { get; set; }
+
         public Game Game;
+
         public IEnumerable<GameModel> GameModels;
     }
 }

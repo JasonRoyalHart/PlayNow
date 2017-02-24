@@ -1,0 +1,31 @@
+﻿@model PlayNow.Models.ChatRoomViewModel
+@{
+    ViewBag.Title = "RPGSessionChatRoomPartial";
+}
+
+@{
+    <div name="divPartial" id="divPartial">
+        <table class="table">
+            <thead>
+                <tr style="margin-bottom:20px">
+                    <th class="tableTitle">Message</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Messages != null)
+                {
+                    foreach (var message in Model.Messages)
+                    {
+                        <tr>
+                            <td>@message.Message</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+
+}
+
+
+

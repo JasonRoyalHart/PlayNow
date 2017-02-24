@@ -21,5 +21,7 @@ namespace PlayNow.Models
 
         [InverseProperty("Games")]
         public virtual ICollection<PublicPlaceModel> PublicPlaces { get; set; }
+        [InverseProperty("GamesIWantToPlay")]
+        public virtual ICollection<UserModel> UsersThatWantToPlay { get; set; }
     }
 }

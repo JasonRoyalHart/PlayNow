@@ -1,0 +1,56 @@
+﻿@model PlayNow.Models.RPGSessionViewModel
+@{
+    ViewBag.Title = "Invite";
+}
+
+<h2>Invite Players To Your Game</h2>
+@using (Html.BeginForm("InviteResult", "MyRPGSessions", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.RPGSessionId)
+    <div>
+        <table class="table">
+            <thead>
+                <tr style="margin-bottom:20px">
+                    <th class="tableTitle"></th>
+                    <th class="tableTitle"></th>
+                    <th class="tableTitle"></th>
+                    <th class="tableTitle"></th>
+                </tr>
+            </thead>
+            @for (var i = 0; i < Model.NumberOfCurrentUsers + 1; i++)
+            {
+                <tr style="margin-bottom:20px">
+
+                    <td>Player</td>
+                    @if (i + 1 <= Model.NumberOfCurrentUsers)
+                    {
+
+                        <td>@Model.RPGSessionToEdit.Users.ElementAt(i).DisplayName</td>
+                    }
+                    else
+                    {
+                        <td>None</td>
+                    }
+
+                    @if (i + 1 <= Model.NumberOfCurrentUsers)
+                    {
+                        if (Model.CurrentUserModel.UserId == Model.RPGSessionToEdit.Users.ElementAt(i).UserId)
+                        {
+                            <td></td>
+                        }
+                        else
+                        {
+                            <td><input type="button" value="Remove" onclick="location.href='@Url.Action("Remove", "MyRPGSessions", new { GameSessionToRemoveFrom = Model.RPGSessionToEdit.RPGSessionId, UserNumberToRemove = i })'" /></td>
+                        }
+                    }
+                    else
+                    {
+                        <td><input type="submit" class="btn btn-default" value="Invite" /></td>
+                            <td>@Html.DropDownListFor(m => m.RPGSession.UserId, new SelectList(Model.InvitableUsers, "UserId", "DisplayName"), "Name", new { @class = "form-control" })</td>
+                    }
+                </tr>
+            }
+        </table>
+    </div>
+}

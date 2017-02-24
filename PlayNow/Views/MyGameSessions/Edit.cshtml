@@ -4,9 +4,10 @@
 }
 
 <h2>Edit A Game</h2>
-@using (Html.BeginForm("NewGameResult", "Game", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("EditGameResult", "MyGameSessions", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.GameSessionId)
 <div>
     <table class="table">
         <thead>
@@ -39,6 +40,9 @@
                 <td>Year</td>
                 <td>@Model.GameSessionToEdit.Year</td>
                 <td>@Html.TextBoxFor(m => m.Year, new { @class = "form-control" })</td>
+            </tr>
+            <tr>
+                <td><input type="submit" class="btn btn-default" value="Edit" /></td>
             </tr>
             @for (var i = 0; i < Model.GameSessionToEdit.MaximumPlayers; i++)
             {

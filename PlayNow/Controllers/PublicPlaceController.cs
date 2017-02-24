@@ -78,8 +78,15 @@ namespace PlayNow.Controllers
             var currentUserName = User.Identity.Name;
             var currentUser = _context.Users.FirstOrDefault(m => m.UserName == currentUserName);
             var currentUserModel = _context.UserModel.FirstOrDefault(m => m.Email == currentUserName);
-            var MyRating = _context.PublicPlaceRatingModel.FirstOrDefault(m => m.User.UserId == currentUserModel.UserId).Rating;
-            //            var MyRating = _context.PublicPlaceRatingModel.ElementAt(MyRatingId);
+            int MyRating = 0;
+            if (_context.PublicPlaceRatingModel.FirstOrDefault(m => m.User.UserId == currentUserModel.UserId) == null)
+            {
+                MyRating = 0;
+            }
+            else { 
+                MyRating = _context.PublicPlaceRatingModel.FirstOrDefault(m => m.User.UserId == currentUserModel.UserId).Rating;
+            }
+
             var PlaceGameModels = PublicPlace.Games;
             var AllGameModels = _context.GameModel;
             var viewModel = new PublicPlaceViewModel
@@ -104,14 +111,27 @@ namespace PlayNow.Controllers
             var currentUserName = User.Identity.Name;
             var currentUser = _context.Users.FirstOrDefault(m => m.UserName == currentUserName);
             var currentUserModel = _context.UserModel.FirstOrDefault(m => m.Email == currentUserName);
-            var MyRating = _context.PublicPlaceRatingModel.FirstOrDefault(m => m.User.UserId == currentUserModel.UserId).Rating;
             int PublicPlaceId = model.PublicPlaceId;
             var PublicPlace = _context.PublicPlaceModel.Find(PublicPlaceId);
             var PlaceGameModels = PublicPlace.Games;
             var AllGameModels = _context.GameModel;
             var NewRating = model.MyRating;
             var ChangeRating = model.MyRating;
-            PublicPlace.Ratings.FirstOrDefault(m => m.User == currentUserModel).Rating = ChangeRating;
+            if (PublicPlace.Ratings.FirstOrDefault(m => m.User == currentUserModel) != null)
+            {
+                PublicPlace.Ratings.FirstOrDefault(m => m.User == currentUserModel).Rating = ChangeRating;
+            }
+            else
+            {
+                var FirstRating = new PublicPlaceRatingModel()
+                {
+                    Rating = NewRating,
+                    User = currentUserModel,
+                    PublicPlace = PublicPlace
+                };
+                PublicPlace.Ratings.Add(FirstRating);
+                _context.SaveChanges();
+            }
             double NewAverage = CalculateAverageRating(PublicPlace);
             PublicPlace.AverageRating = NewAverage;
             if (model.Game != null)
@@ -124,9 +144,6 @@ namespace PlayNow.Controllers
                 }
             }
             _context.SaveChanges();
-
-//            var currentUserModel = _context.UserModel.FirstOrDefault(m => m.Email == currentUserName);
-
             var viewModel = new PublicPlaceViewModel()
             {
                 Name = PublicPlace.Name,

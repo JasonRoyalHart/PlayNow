@@ -38,7 +38,7 @@ namespace PlayNow.Controllers
             var currentUserName = User.Identity.Name;
             var currentUser = _context.Users.FirstOrDefault(m => m.UserName == currentUserName);
             int GameId = model.Game.GameId;
-            //            if (GameId != 0)
+            var currentUserModel = _context.UserModel.FirstOrDefault(m => m.Email == currentUserName);
             string GameName = _context.GameModel.Find(GameId).Name;
             Game Game = model.Game;
             string Name = model.Name;
@@ -53,7 +53,7 @@ namespace PlayNow.Controllers
 
             var GameSession = new GameSessionModel()
             {
-                Creator = currentUser.Email,
+                Creator = currentUserModel.DisplayName,
                 Game = Game,
                 GameId = GameId,
                 Name = Name,
@@ -68,7 +68,6 @@ namespace PlayNow.Controllers
                 ApprovalNeeded = ApprovalNeeded
             };
             _context.GameSessionModel.Add(GameSession);
-            var currentUserModel = _context.UserModel.FirstOrDefault(m => m.Email == currentUserName);
             GameSession.Users.Add(currentUserModel);
             var ChatRoom = new ChatRoomModel();
             GameSession.ChatRooms.Add(ChatRoom);
@@ -174,17 +173,6 @@ namespace PlayNow.Controllers
             _context.ChatRoomModel.Find(ChatRoom.ChatRoomId).Messages.Add(ChatRoomMessage);
             _context.SaveChanges();
             var Messages = _context.ChatRoomModel.Find(ChatRoom.ChatRoomId).Messages;
-
-            //var ChatRoomViewModel = new ChatRoomViewModel()
-            //{
-            //    ChatRoomId = ChatRoom.ChatRoomId,
-            //    Messages = Messages
-            //};
-            //var ChatRoomMessageViewModel = new ChatRoomMessageViewModel()
-            //{
-
-            //};
-
             var restList = _context.GameSessionModel;
             var gameList = _context.GameModel.ToList();
             var GameSession = _context.GameSessionModel.Find(GameSessionId);

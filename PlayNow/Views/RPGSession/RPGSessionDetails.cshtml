@@ -1,0 +1,74 @@
+﻿
+@model PlayNow.Models.RPGSessionViewModel
+@{
+    ViewBag.Title = "RPGSessionDetails";
+}
+@{
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+}
+<div id="Details" name="Details">
+
+</div>
+<div id="Messages" name="Messages">
+
+</div>
+<div id="Submit" name="Submit">
+
+</div>
+
+
+<script>
+    function loadDetailsView() {
+        $.ajax({
+            url: '@Url.Action("DetailsPartial", "RPGSession")',
+            type: 'post',
+            cache: false,
+            async: true,
+            data: { RPGSessionDetails: @Model.RPGSessionId },
+            success: function (result) {
+                jQuery('#Details').html(result);
+            }
+        });
+    }
+    function loadMessagesView() {
+        $.ajax({
+            url: '@Url.Action("GeneralChatMessages", "RPGSession")',
+            type: 'post',
+            cache: false,
+            async: true,
+            data: { RPGSessionId: @Model.RPGSessionId },
+            success: function (result) {
+                jQuery('#Messages').html(result);
+            }
+        });
+    }
+    function loadChatView() {
+        $.ajax({
+            url: '@Url.Action("GeneralChat", "RPGSession")',
+            type: 'post',
+            cache: false,
+            async: true,
+            data: {RPGSessionId: @Model.RPGSessionId },
+            success: function (result) {
+                jQuery('#Submit').html(result);
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        loadDetailsView();
+        loadMessagesView();
+        loadChatView();
+    });
+    $(document).ready(function () {
+        function RefreshPartial() {
+            setTimeout(function () {
+               loadMessagesView();
+                RefreshPartial();
+            }, 1000);
+        }
+        RefreshPartial();
+    });
+
+</script>

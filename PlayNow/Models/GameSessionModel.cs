@@ -15,8 +15,8 @@ namespace PlayNow.Models
         {
             this.Users = new HashSet<UserModel>();
             this.ChatRooms = new HashSet<ChatRoomModel>();
-            //            this.UsersNeedingApproval = new HashSet<UserModel>();
-            //            this.InvitedUsers = new HashSet<UserModel>();
+            this.UsersNeedingApproval = new HashSet<UserModel>();
+            this.InvitedUsers = new HashSet<UserModel>();
         }
         [Key]
         public int GameSessionId { get; set; }

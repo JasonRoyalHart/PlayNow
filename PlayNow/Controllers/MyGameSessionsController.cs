@@ -24,14 +24,23 @@ namespace PlayNow.Controllers
             var viewModel = CreateViewModel();
             return View(viewModel);
         }
-        public ActionResult EditGameResult(GameSessionViewModel model, FormCollection collection)
+        public ActionResult EditGameResult(GameSessionViewModel model)
         {
-
-            var viewModel = new GameListViewModel()
-            {
-//                GameSessionModels = restList
-            };
-            return View(viewModel);
+            int entry = model.GameSessionId;
+            _context.GameSessionModel.Find(entry).Time = model.Time;
+            _context.GameSessionModel.Find(entry).Day = model.Day;
+            _context.GameSessionModel.Find(entry).Month = model.Month;
+            _context.GameSessionModel.Find(entry).Year = model.Year;
+            _context.SaveChanges();
+            var viewModel = CreateViewModel();
+            var restList = _context.GameSessionModel;
+            var ThisGameSession = restList.Find(entry);
+            var UsersInList = CreateInviteList(entry);
+            viewModel.GameSessionToEdit = ThisGameSession;
+            viewModel.InvitableUsers = UsersInList;
+            viewModel.NumberOfCurrentUsers = ThisGameSession.Users.Count;
+            viewModel.GameSessionId = entry;
+            return View("Edit", viewModel);
         }
         public ActionResult Approve(int ApprovedGameSession, int ApprovedId)
         {
@@ -68,6 +77,7 @@ namespace PlayNow.Controllers
             viewModel.GameSessionToEdit = ThisGameSession;
             viewModel.InvitableUsers = UsersInList;
             viewModel.NumberOfCurrentUsers = ThisGameSession.Users.Count;
+            viewModel.GameSessionId = GameSessionToEdit;
             return View(viewModel);
 
         }
@@ -87,6 +97,7 @@ namespace PlayNow.Controllers
             viewModel.InvitableUsers = UsersInList;
             viewModel.GameSession = GameSession;
             viewModel.NumberOfCurrentUsers = ThisGameSession.Users.Count;
+            viewModel.GameSessionId = ThisGameSession.GameSessionId;
 
             return View("Edit", viewModel);
         }
@@ -178,7 +189,7 @@ namespace PlayNow.Controllers
             var currentUserId = currentUserModel.UserId;
             var restList = _context.GameSessionModel;
             List<GameSessionModel> MySessionList = new List<GameSessionModel>();
-            for (int i = 1; i < restList.Count(); i++)
+            for (int i = 1; i <= restList.Count(); i++)
             {
                 var Session = restList.Find(i);
                 if (Session.InvitedUsers != null)

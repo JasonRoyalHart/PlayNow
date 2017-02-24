@@ -10,5 +10,8 @@ namespace PlayNow.Models
     {
         [Key]
         public int UserRatingId { get; set; }
+        public int Rating { get; set; }
+        public UserModel RatingUser { get; set; }
+        public virtual UserModel User { get; set; }
     }
 }

@@ -1,0 +1,29 @@
+﻿@model PlayNow.Models.UserViewModel
+@{
+    ViewBag.Title = "UserList";
+}
+
+<h2>Users</h2>
+
+<div>
+    <table class="table">
+        <thead>
+            <tr style="margin-bottom:20px">
+                <th class="tableTitle">Details</th>
+                <th class="tableTitle">Name</th>
+                <th class="tableTitle">Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (var i = 0; i < Model.UserModels.Count(); i++)
+            {
+                <tr>
+                    <td><input type="button" value="Details" onclick="location.href='@Url.Action("UserDetails", "User", new { UserId = Model.UserModels.ElementAt(i).UserId})'" /></td>
+                    <td>@Model.UserModels.ElementAt(i).DisplayName</td>
+                    <td>@Model.UserModels.ElementAt(i).AverageRating</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

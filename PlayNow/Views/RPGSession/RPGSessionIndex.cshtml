@@ -1,0 +1,126 @@
+﻿@model PlayNow.Models.RPGSessionViewModel
+@{
+    ViewBag.Title = "RPGSessionIndex";
+}
+
+<h2>Create a new game role playing game session</h2>
+
+@using (Html.BeginForm("NewRPGSessionResult", "RPGSession", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <h4>Enter RPG Session Information</h4>
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.RPG.Name)
+        @Html.DropDownListFor(m => m.RPG.RPGId, new SelectList(Model.RPGModels, "RPGId", "Name"), "Choose an RPG", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.RPG.RPGId)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.User.DisplayName)
+        @Html.DropDownListFor(m => m.User.UserId, new SelectList(Model.UserModels, "UserId", "DisplayName"), "Choose a Game Master", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.User.UserId)
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Time, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Time, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Day, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Day, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Month, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Month, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Year, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Year, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Repeats, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Repeats, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.MinimumPlayers, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.MinimumPlayers, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.MaximumPlayers, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.MaximumPlayers, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.MinimumRating, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.MinimumRating, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ApprovalNeeded, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.CheckBoxFor(m => m.ApprovalNeeded, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Create a game session" />
+        </div>
+    </div>
+
+    <div>
+        <table class="table">
+            <thead>
+                <tr style="margin-bottom:20px">
+                    <th class="tableTitle">RPG</th>
+                    <th class="tableTitle">GM</th>
+                    <th class="tableTitle">Creator</th>
+                    <th class="tableTitle">Day</th>
+                    <th class="tableTitle">Month</th>
+                    <th class="tableTitle">Year</th>
+                    <th class="tableTitle">Repeats</th>
+                    <th class="tableTitle">Minimum Players</th>
+                    <th class="tableTitle">Maximum Players</th>
+                    <th class="tableTitle">Minimum Rating</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (var i = 0; i < Model.RPGSessionModels.Count(); i++)
+                {
+                    <tr>
+                        <td>@Model.RPGSessionModels.ElementAt(i).RPGName</td>
+                        <td>@Model.RPGSessionModels.ElementAt(i).GMName</td>
+                        <td>@Model.RPGSessionModels.ElementAt(i).Creator</td>
+                        <td>@Model.RPGSessionModels.ElementAt(i).Day</td>
+                        <td>@Model.RPGSessionModels.ElementAt(i).Month</td>
+                        <td>@Model.RPGSessionModels.ElementAt(i).Year</td>
+                        <td>@Model.RPGSessionModels.ElementAt(i).Repeats</td>
+                        <td>@Model.RPGSessionModels.ElementAt(i).MinimumPlayers</td>
+                        <td>@Model.RPGSessionModels.ElementAt(i).MaximumPlayers</td>
+                        <td>@Model.RPGSessionModels.ElementAt(i).MinimumRating</td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+}
+

@@ -35,7 +35,15 @@
                     bool Display = true;
                     bool DisplayJoin = true;
                     var GameSessionUsers = Model.GameSessionModels.ElementAt(i).Users;
+                    var GameSessionNeedingApproval = Model.GameSessionModels.ElementAt(i).UsersNeedingApproval;
                     foreach (var j in GameSessionUsers)
+                    {
+                        if (j.UserId == Model.CurrentUserId)
+                        {
+                            DisplayJoin = false;
+                        }
+                    }
+                    foreach (var j in GameSessionNeedingApproval)
                     {
                         if (j.UserId == Model.CurrentUserId)
                         {
@@ -55,7 +63,7 @@
                             }
                             else
                             {
-                                <td>Joined</td>
+                                <td></td>
                             }
                             <td>@Model.GameSessionModels.ElementAt(i).GameName</td>
                             <td>@Model.GameSessionModels.ElementAt(i).Creator</td>

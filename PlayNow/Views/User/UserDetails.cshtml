@@ -1,0 +1,38 @@
+﻿@model PlayNow.Models.UserViewModel
+@{
+    ViewBag.Title = "UserDetails";
+}
+
+<h2>User Details</h2>
+
+@using (Html.BeginForm("DetailsResult", "User", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.UserId)
+    <div>
+        <table class="table">
+            <thead>
+                <tr style="margin-bottom:20px">
+                    <th class="tableTitle"></th>
+                    <th class="tableTitle"></th>
+                    <th class="tableTitle"></th>
+                    <th class="tableTitle"></th>
+                </tr>
+            </thead>
+            <tr>
+                <td>Name</td>
+                <td>@Model.DisplayName</td>
+            </tr>
+            <tr>
+                <td>Average Rating</td>
+                <td>@Model.Rating</td>
+            </tr>
+            <tr>
+                <td>My Rating</td>
+                <td>@Model.MyRating</td>
+                <td>@Html.TextBoxFor(m => m.MyRating, new { @class = "form-control" })</td>
+                <td><input type="submit" class="btn btn-default" value="Change Rating" /></td>
+            </tr>
+        </table>
+    </div>
+}

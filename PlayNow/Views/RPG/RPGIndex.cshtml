@@ -1,0 +1,46 @@
+﻿@model PlayNow.Models.RPGViewModel
+@{
+    ViewBag.Title = "GameIndex";
+}
+
+<h2>Add role playing games to the library</h2>
+
+@using (Html.BeginForm("NewRPGResult", "RPG", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <h4>Enter Role Playing Game Information</h4>
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Add an RPG" />
+        </div>
+    </div>
+
+
+    <div>
+        <table class="table">
+            <thead>
+                <tr style="margin-bottom:20px">
+                    <th class="tableTitle">Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (var i = 0; i < Model.RPGModels.Count(); i++)
+                {
+                    <tr>
+                        <td>@Model.RPGModels.ElementAt(i).Name</td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+}

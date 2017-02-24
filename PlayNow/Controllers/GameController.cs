@@ -24,19 +24,16 @@ namespace PlayNow.Controllers
         }
         public ActionResult GameIndex()
         {
-            var restList = _context.GameModel;
+            var gameList = _context.GameModel;
             var viewModel = new GameViewModel()
             {
-                GameModels = restList
+                GameModels = gameList
             };
             return View(viewModel);
         }
 
         public ActionResult NewGameResult(GameViewModel model)
         {
-            var currentUserName = User.Identity.Name;
-            var currentUser = _context.Users.FirstOrDefault(m => m.UserName == currentUserName);
-
             string Name = model.Name;
             int MinimumPlayers = model.MinimumPlayers;
             int MaximumPlayers = model.MaximumPlayers;
